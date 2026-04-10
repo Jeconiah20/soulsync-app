@@ -1,6 +1,6 @@
 import previewGif from '../preview-animation.gif'
 
-function Preview() {
+function Preview({ setCurrentPage }) {
   return (
     <section className="preview-section fade-section visible">
       <div className="preview-container">
@@ -23,7 +23,14 @@ function Preview() {
             <li>🔒 Private mode with no streak pressure</li>
           </ul>
 
-          <a href="#signup" className="preview-btn">Start Journaling</a>
+          <a 
+            href="#" 
+            className="preview-btn"
+            onClick={(e) => {
+              e.preventDefault()
+              setCurrentPage('today')
+            }}
+          >Start Journaling</a>
         </div>
 
       </div>

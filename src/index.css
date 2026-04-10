@@ -605,3 +605,438 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ================= TODAY PAGE ================= */
+.today-page {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #F6F4C8, #FFE9A8, #FADADD, #FFF3C4);
+  background-size: 600% 600%;
+  animation: calmFlow 14s ease-in-out infinite;
+  padding: 2rem;
+}
+
+.today-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.today-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.today-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2E2E2E;
+  margin-bottom: 0.5rem;
+}
+
+.today-header p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* ===== MOOD SELECTOR ===== */
+.mood-selector {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.mood-toggle-btn {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  color: #2E2E2E;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mood-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Hidden mood menu */
+.mood-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  z-index: 10;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mood-option {
+  background: #f7f9fc;
+  border: 2px solid transparent;
+  padding: 1rem 0.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.mood-option:hover {
+  background: #e6eef8;
+  transform: scale(1.05);
+}
+
+.mood-option.active {
+  background: #cfe6f5;
+  border-color: #a8d5f0;
+}
+
+.mood-emoji {
+  font-size: 2rem;
+}
+
+.mood-label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* ===== WRITING AREA ===== */
+.writing-area {
+  margin-bottom: 2rem;
+}
+
+.writing-area textarea {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 2rem;
+  border-radius: 20px;
+  font-size: 1.05rem;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.8;
+  color: #2E2E2E;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  resize: vertical;
+  min-height: 400px;
+}
+
+.writing-area textarea::placeholder {
+  color: #aaa;
+}
+
+.writing-area textarea:focus {
+  outline: none;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== SAVE BUTTON ===== */
+.save-btn {
+  width: 100%;
+  background: linear-gradient(120deg, #cfe6f5, #fff1b8);
+  border: none;
+  padding: 1.2rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2E2E2E;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .mood-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .today-header h1 {
+    font-size: 2rem;
+  }
+}
+/* ================= TODAY'S INSIGHTS PAGE ================= */
+.insights-page {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #F6F4C8, #FFE9A8, #FADADD, #FFF3C4);
+  background-size: 600% 600%;
+  animation: calmFlow 14s ease-in-out infinite;
+  padding: 2rem;
+}
+
+.insights-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.insights-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.insights-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2E2E2E;
+  margin-bottom: 0.5rem;
+}
+
+.insights-header p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* ===== INSIGHT SECTIONS ===== */
+.insight-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.insight-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #2E2E2E;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+/* Wins & Priorities Lists */
+.wins-list,
+.priorities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.insight-input {
+  background: #f7f9fc;
+  border: none;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  color: #2E2E2E;
+  transition: all 0.2s ease;
+}
+
+.insight-input::placeholder {
+  color: #aaa;
+}
+
+.insight-input:focus {
+  outline: none;
+  background: #e6eef8;
+  box-shadow: 0 4px 12px rgba(207, 230, 245, 0.3);
+}
+
+/* Textareas */
+.insight-textarea {
+  width: 100%;
+  background: #f7f9fc;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  color: #2E2E2E;
+  line-height: 1.7;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.insight-textarea::placeholder {
+  color: #aaa;
+}
+
+.insight-textarea:focus {
+  outline: none;
+  background: #e6eef8;
+  box-shadow: 0 4px 12px rgba(207, 230, 245, 0.3);
+}
+
+/* ===== SAVE BUTTON ===== */
+.save-insights-btn {
+  width: 100%;
+  background: linear-gradient(120deg, #cfe6f5, #fff1b8);
+  border: none;
+  padding: 1.2rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2E2E2E;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 1rem;
+}
+
+.save-insights-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .insights-header h1 {
+    font-size: 2rem;
+  }
+  
+  .insight-section {
+    padding: 1.5rem;
+  }
+}
+
+/* ================= GRATITUDE PAGE ================= */
+.gratitude-page {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #F6F4C8, #FFE9A8, #FADADD, #FFF3C4);
+  background-size: 600% 600%;
+  animation: calmFlow 14s ease-in-out infinite;
+  padding: 2rem;
+}
+
+.gratitude-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.gratitude-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gratitude-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  color: #2E2E2E;
+  margin-bottom: 0.5rem;
+}
+
+.gratitude-header p {
+  color: #555;
+  font-size: 1.15rem;
+}
+
+.gratitude-prompt {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.gratitude-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.gratitude-prompt p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Gratitude List */
+.gratitude-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+}
+
+.gratitude-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.gratitude-number {
+  background: linear-gradient(120deg, #cfe6f5, #fff1b8);
+  color: #2E2E2E;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.gratitude-textarea {
+  flex: 1;
+  background: white;
+  border: none;
+  padding: 1.3rem 1.5rem;
+  border-radius: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2E2E2E;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+.gratitude-textarea::placeholder {
+  color: #aaa;
+}
+
+.gratitude-textarea:focus {
+  outline: none;
+  box-shadow: 0 12px 32px rgba(207, 230, 245, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Save Button */
+.save-gratitude-btn {
+  width: 100%;
+  background: linear-gradient(120deg, #cfe6f5, #fff1b8);
+  border: none;
+  padding: 1.3rem;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #2E2E2E;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-gratitude-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}

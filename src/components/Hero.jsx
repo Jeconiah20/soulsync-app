@@ -1,6 +1,6 @@
 import diaryImage from '../Diary.svg'
 
-function Hero() {
+function Hero({ setCurrentPage }) {
   return (
     <section className="hero-section fade-section visible">
       <div className="orbs">
@@ -19,7 +19,14 @@ function Hero() {
               track moods, and reconnect with yourself — gently,
               without pressure.
             </p>
-            <a href="#" className="hero-cta">Start Journaling</a>
+            <a 
+              href="#" 
+              className="hero-cta"
+              onClick={(e) => {
+                e.preventDefault()
+                setCurrentPage('today')
+              }}
+            >Start Journaling</a>
           </div>
 
           <div className="col-lg-6 hero-image text-center">
