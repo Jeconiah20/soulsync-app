@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -8,14 +8,49 @@ import Footer from './components/Footer'
 import Today from './components/Today'
 import TodaysInsights from './components/TodaysInsights'
 import Gratitude from './components/Gratitude'
+import Login from './components/Login'
+import { supabase } from './supabaseClient'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(true)
 
+  // Check if user is logged in on app start
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoggedIn(!!session)
+      setLoading(false)
+    })
+
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session)
+      setLoading(false)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  // Show loading while checking auth
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <p>Loading...</p>
+      </div>
+    )
+  }
+
+  // If not logged in, show login page
+  if (!isLoggedIn) {
+    return <Login setIsLoggedIn={setIsLoggedIn} />
+  }
+
+  // If logged in, show app pages
   if (currentPage === 'today') {
     return (
       <>
-        <Header setCurrentPage={setCurrentPage} />
+        <Header setCurrentPage={setCurrentPage} setIsLoggedIn={setIsLoggedIn} />
         <Today />
       </>
     )
@@ -24,7 +59,7 @@ function App() {
   if (currentPage === 'insights') {
     return (
       <>
-        <Header setCurrentPage={setCurrentPage} />
+        <Header setCurrentPage={setCurrentPage} setIsLoggedIn={setIsLoggedIn} />
         <TodaysInsights />
       </>
     )
@@ -33,7 +68,7 @@ function App() {
   if (currentPage === 'gratitude') {
     return (
       <>
-        <Header setCurrentPage={setCurrentPage} />
+        <Header setCurrentPage={setCurrentPage} setIsLoggedIn={setIsLoggedIn} />
         <Gratitude />
       </>
     )
@@ -41,7 +76,7 @@ function App() {
 
   return (
     <div>
-      <Header setCurrentPage={setCurrentPage} />
+      <Header setCurrentPage={setCurrentPage} setIsLoggedIn={setIsLoggedIn} />
       <Hero setCurrentPage={setCurrentPage} />
       <Features />
       <HowItWorks />

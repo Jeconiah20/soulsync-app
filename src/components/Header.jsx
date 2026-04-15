@@ -1,6 +1,14 @@
 import logo from '../Soul_Sync_Logo-removebg-preview 1.png'
+import { supabase } from '../supabaseClient'
 
-function Header({ setCurrentPage }) {
+function Header({ setCurrentPage, setIsLoggedIn }) {
+  
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    setIsLoggedIn(false)
+    setCurrentPage('home')
+  }
+
   return (
     <header className="main-header fade-section visible">
       <nav className="navbar navbar-expand-lg">
@@ -35,28 +43,36 @@ function Header({ setCurrentPage }) {
                 >Today</a>
               </li>
               <li className="nav-item">
-  <a 
-    className="nav-link" 
-    href="#"
-    onClick={(e) => {
-      e.preventDefault()
-      setCurrentPage('insights')
-    }}
-  >Today's Insights</a>
-</li>
+                <a 
+                  className="nav-link" 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setCurrentPage('insights')
+                  }}
+                >Today's Insights</a>
+              </li>
               <li className="nav-item">
-  <a 
-    className="nav-link" 
-    href="#"
-    onClick={(e) => {
-      e.preventDefault()
-      setCurrentPage('gratitude')
-    }}
-  >Gratitude</a>
-</li>
+                <a 
+                  className="nav-link" 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setCurrentPage('gratitude')
+                  }}
+                >Gratitude</a>
+              </li>
               <li className="nav-item"><a className="nav-link cta-link" href="#">Private</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Settings</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Log Out</a></li>
+              <li className="nav-item">
+                <a 
+                  className="nav-link" 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleLogout()
+                  }}
+                >Log Out</a>
+              </li>
             </ul>
           </div>
         </div>

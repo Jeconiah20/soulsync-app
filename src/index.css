@@ -1040,3 +1040,119 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
 }
+
+/* ================= LOGIN PAGE ================= */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #F6F4C8, #FFE9A8, #FADADD, #FFF3C4);
+  background-size: 600% 600%;
+  animation: calmFlow 14s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-container {
+  background: white;
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.login-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #2E2E2E;
+  margin-bottom: 0.5rem;
+}
+
+.login-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.form-group input {
+  padding: 1rem 1.2rem;
+  border: 2px solid #e6eef8;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #cfe6f5;
+  background: #f7f9fc;
+}
+
+.login-btn {
+  background: linear-gradient(120deg, #cfe6f5, #fff1b8);
+  border: none;
+  padding: 1.1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2E2E2E;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.signup-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.signup-link a {
+  color: #2E2E2E;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid #2E2E2E;
+}
+
+.signup-link a:hover {
+  opacity: 0.7;
+}
+/* ================= AUTH MESSAGE ================= */
+.auth-message {
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: #fff3cd;
+  color: #856404;
+  font-size: 0.9rem;
+  text-align: center;
+}
