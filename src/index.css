@@ -1156,3 +1156,12 @@ body {
   font-size: 0.9rem;
   text-align: center;
 }
+/* ================= SAVE MESSAGE ================= */
+.save-message {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 12px;
+  background: white;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}

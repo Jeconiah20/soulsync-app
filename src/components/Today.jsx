@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import { supabase } from '../supabaseClient'
 
 function Today() {
   const [selectedMood, setSelectedMood] = useState(null)
   const [showMoodMenu, setShowMoodMenu] = useState(false)
+  const [entryText, setEntryText] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [message, setMessage] = useState('')
 
   const moods = [
     { emoji: '😊', label: 'Happy' },
@@ -14,6 +18,43 @@ function Today() {
     { emoji: '😴', label: 'Tired' },
     { emoji: '😐', label: 'Neutral' }
   ]
+
+  const handleSave = async () => {
+    if (!selectedMood || !entryText.trim()) {
+      setMessage('Please select a mood and write something!')
+      return
+    }
+
+    setSaving(true)
+    setMessage('')
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+
+      const { error } = await supabase
+        .from('entries')
+        .insert({
+          user_id: user.id,
+          entry_type: 'today',
+          content: {
+            mood: selectedMood,
+            text: entryText
+          }
+        })
+
+      if (error) throw error
+
+      setMessage('✅ Entry saved successfully!')
+      setEntryText('')
+      setSelectedMood(null)
+      
+      setTimeout(() => setMessage(''), 3000)
+    } catch (error) {
+      setMessage('❌ Error saving entry: ' + error.message)
+    } finally {
+      setSaving(false)
+    }
+  }
 
   return (
     <div className="today-page">
@@ -60,12 +101,22 @@ function Today() {
         <div className="writing-area">
           <textarea 
             placeholder="Start writing your thoughts..."
+            value={entryText}
+            onChange={(e) => setEntryText(e.target.value)}
             rows="15"
           />
         </div>
 
+        {message && <p className="save-message">{message}</p>}
+
         {/* Save button */}
-        <button className="save-btn">Save Entry</button>
+        <button 
+          className="save-btn" 
+          onClick={handleSave}
+          disabled={saving}
+        >
+          {saving ? 'Saving...' : 'Save Entry'}
+        </button>
 
       </div>
     </div>

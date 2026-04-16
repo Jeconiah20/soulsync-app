@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { supabase } from '../supabaseClient'
 
 function TodaysInsights() {
   const [wins, setWins] = useState(['', '', ''])
   const [priorities, setPriorities] = useState(['', '', ''])
   const [lingeringThoughts, setLingeringThoughts] = useState('')
   const [letGo, setLetGo] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [message, setMessage] = useState('')
 
   const updateWin = (index, value) => {
     const newWins = [...wins]
@@ -16,6 +19,53 @@ function TodaysInsights() {
     const newPriorities = [...priorities]
     newPriorities[index] = value
     setPriorities(newPriorities)
+  }
+
+  const handleSave = async () => {
+    // Check if at least something is filled
+    const hasContent = wins.some(w => w.trim()) || 
+                      priorities.some(p => p.trim()) || 
+                      lingeringThoughts.trim() || 
+                      letGo.trim()
+
+    if (!hasContent) {
+      setMessage('Please fill in at least one section!')
+      return
+    }
+
+    setSaving(true)
+    setMessage('')
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+
+      const { error } = await supabase
+        .from('entries')
+        .insert({
+          user_id: user.id,
+          entry_type: 'insights',
+          content: {
+            wins: wins.filter(w => w.trim()),
+            priorities: priorities.filter(p => p.trim()),
+            lingeringThoughts,
+            letGo
+          }
+        })
+
+      if (error) throw error
+
+      setMessage('✅ Insights saved successfully!')
+      setWins(['', '', ''])
+      setPriorities(['', '', ''])
+      setLingeringThoughts('')
+      setLetGo('')
+      
+      setTimeout(() => setMessage(''), 3000)
+    } catch (error) {
+      setMessage('❌ Error saving insights: ' + error.message)
+    } finally {
+      setSaving(false)
+    }
   }
 
   return (
@@ -85,8 +135,16 @@ function TodaysInsights() {
           />
         </div>
 
+        {message && <p className="save-message">{message}</p>}
+
         {/* Save Button */}
-        <button className="save-insights-btn">Save Today's Insights</button>
+        <button 
+          className="save-insights-btn"
+          onClick={handleSave}
+          disabled={saving}
+        >
+          {saving ? 'Saving...' : 'Save Today\'s Insights'}
+        </button>
 
       </div>
     </div>

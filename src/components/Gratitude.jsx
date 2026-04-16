@@ -1,12 +1,53 @@
 import { useState } from 'react'
+import { supabase } from '../supabaseClient'
 
 function Gratitude() {
   const [gratitudes, setGratitudes] = useState(['', '', ''])
+  const [saving, setSaving] = useState(false)
+  const [message, setMessage] = useState('')
 
   const updateGratitude = (index, value) => {
     const newGratitudes = [...gratitudes]
     newGratitudes[index] = value
     setGratitudes(newGratitudes)
+  }
+
+  const handleSave = async () => {
+    // Check if at least something is filled
+    const hasContent = gratitudes.some(g => g.trim())
+
+    if (!hasContent) {
+      setMessage('Please write at least one thing you\'re grateful for!')
+      return
+    }
+
+    setSaving(true)
+    setMessage('')
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+
+      const { error } = await supabase
+        .from('entries')
+        .insert({
+          user_id: user.id,
+          entry_type: 'gratitude',
+          content: {
+            gratitudes: gratitudes.filter(g => g.trim())
+          }
+        })
+
+      if (error) throw error
+
+      setMessage('✅ Gratitude saved successfully!')
+      setGratitudes(['', '', ''])
+      
+      setTimeout(() => setMessage(''), 3000)
+    } catch (error) {
+      setMessage('❌ Error saving gratitude: ' + error.message)
+    } finally {
+      setSaving(false)
+    }
   }
 
   return (
@@ -40,8 +81,16 @@ function Gratitude() {
           ))}
         </div>
 
+        {message && <p className="save-message">{message}</p>}
+
         {/* Save Button */}
-        <button className="save-gratitude-btn">Save Gratitude</button>
+        <button 
+          className="save-gratitude-btn"
+          onClick={handleSave}
+          disabled={saving}
+        >
+          {saving ? 'Saving...' : 'Save Gratitude'}
+        </button>
 
       </div>
     </div>
