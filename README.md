@@ -1,7 +1,7 @@
 ## Soul Sync 🌿
 A calming journaling web application designed to help users reflect, track moods, and reconnect with themselves—gently, without pressure.
 
-- ✨ Features
+## ✨ Features
 - 🌱 Daily Mood Tracking - Check in with your emotions using an intuitive mood selector
 - ✍️ Today's Journal - Spacious writing area to capture your thoughts and feelings
 - 🎯 Daily Insights - Reflect on wins, set priorities, process lingering thoughts
