@@ -1,6 +1,6 @@
 function HowItWorks() {
   return (
-    <section className="how-it-works-section fade-section visible">
+    <section className="how-it-works-section fade-section visible" id="how-it-works">
       <div className="how-it-works-container">
 
         <div className="how-it-works-header">

@@ -10,6 +10,7 @@ import TodaysInsights from './components/TodaysInsights'
 import Gratitude from './components/Gratitude'
 import Login from './components/Login'
 import { supabase } from './supabaseClient'
+import MyEntries from './components/MyEntries'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -74,6 +75,15 @@ function App() {
     )
   }
 
+  if (currentPage === 'myentries') {
+  return (
+    <>
+      <Header setCurrentPage={setCurrentPage} setIsLoggedIn={setIsLoggedIn} />
+      <MyEntries />
+    </>
+  )
+}
+
   return (
     <div>
       <Header setCurrentPage={setCurrentPage} setIsLoggedIn={setIsLoggedIn} />
@@ -81,7 +91,7 @@ function App() {
       <Features />
       <HowItWorks />
       <Preview setCurrentPage={setCurrentPage} />
-      <Footer />
+      <Footer setCurrentPage={setCurrentPage} />
     </div>
   )
 }

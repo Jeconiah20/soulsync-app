@@ -62,7 +62,16 @@ function Header({ setCurrentPage, setIsLoggedIn }) {
                   }}
                 >Gratitude</a>
               </li>
-              <li className="nav-item"><a className="nav-link cta-link" href="#">Private</a></li>
+              <li className="nav-item">
+  <a 
+    className="nav-link cta-link" 
+    href="#"
+    onClick={(e) => {
+      e.preventDefault()
+      setCurrentPage('myentries')
+    }}
+  >My Entries</a>
+</li>
               <li className="nav-item">
                 <a 
                   className="nav-link" 

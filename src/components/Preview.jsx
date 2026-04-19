@@ -20,7 +20,7 @@ function Preview({ setCurrentPage }) {
           <ul className="preview-points">
             <li>🌿 Mood check-ins before each entry</li>
             <li>✍️ Gentle daily prompts to guide writing</li>
-            <li>🔒 Private mode with no streak pressure</li>
+            <li>📚 View and manage all your past entries</li>
           </ul>
 
           <a 

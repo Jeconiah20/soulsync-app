@@ -1,6 +1,6 @@
 function Features() {
   return (
-    <section className="features-section fade-section visible">
+    <section className="features-section fade-section visible" id="features">
       <div className="features-container">
 
         <div className="features-header">
@@ -41,12 +41,6 @@ function Features() {
             <div className="feature-icon">🪷</div>
             <h3>Daily Reflection Prompt</h3>
             <p>One calming question each day to ground your thoughts.</p>
-          </div>
-
-          <div className="feature-card">
-            <div className="feature-icon">🔒</div>
-            <h3>Private Mode</h3>
-            <p>No streaks. No reminders. Write when it feels right.</p>
           </div>
 
         </div>
