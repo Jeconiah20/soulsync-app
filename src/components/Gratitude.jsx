@@ -13,7 +13,6 @@ function Gratitude() {
   }
 
   const handleSave = async () => {
-    // Check if at least something is filled
     const hasContent = gratitudes.some(g => g.trim())
 
     if (!hasContent) {
@@ -51,47 +50,49 @@ function Gratitude() {
   }
 
   return (
-    <div className="gratitude-page">
-      <div className="gratitude-container">
-        
-        <div className="gratitude-header">
-          <h1>Today's Gratitude</h1>
-          <p>What are you grateful for today?</p>
+    <div className="page-wrapper">
+      <div className="gratitude-page">
+        <div className="gratitude-container">
+          
+          <div className="gratitude-header">
+            <h1>Today's Gratitude</h1>
+            <p>What are you grateful for today?</p>
+          </div>
+
+          {/* Gratitude prompt */}
+          <div className="gratitude-prompt">
+            <span className="gratitude-icon">🙏</span>
+            <p>Take a moment to appreciate three things from your day</p>
+          </div>
+
+          {/* 3 Gratitude inputs */}
+          <div className="gratitude-list">
+            {gratitudes.map((gratitude, index) => (
+              <div key={index} className="gratitude-item">
+                <div className="gratitude-number">{index + 1}</div>
+                <textarea
+                  placeholder="I am grateful for..."
+                  value={gratitude}
+                  onChange={(e) => updateGratitude(index, e.target.value)}
+                  rows="3"
+                  className="gratitude-textarea"
+                />
+              </div>
+            ))}
+          </div>
+
+          {message && <p className="save-message">{message}</p>}
+
+          {/* Save Button */}
+          <button 
+            className="save-gratitude-btn"
+            onClick={handleSave}
+            disabled={saving}
+          >
+            {saving ? 'Saving...' : 'Save Gratitude'}
+          </button>
+
         </div>
-
-        {/* Gratitude prompt */}
-        <div className="gratitude-prompt">
-          <span className="gratitude-icon">🙏</span>
-          <p>Take a moment to appreciate three things from your day</p>
-        </div>
-
-        {/* 3 Gratitude inputs */}
-        <div className="gratitude-list">
-          {gratitudes.map((gratitude, index) => (
-            <div key={index} className="gratitude-item">
-              <div className="gratitude-number">{index + 1}</div>
-              <textarea
-                placeholder="I am grateful for..."
-                value={gratitude}
-                onChange={(e) => updateGratitude(index, e.target.value)}
-                rows="3"
-                className="gratitude-textarea"
-              />
-            </div>
-          ))}
-        </div>
-
-        {message && <p className="save-message">{message}</p>}
-
-        {/* Save Button */}
-        <button 
-          className="save-gratitude-btn"
-          onClick={handleSave}
-          disabled={saving}
-        >
-          {saving ? 'Saving...' : 'Save Gratitude'}
-        </button>
-
       </div>
     </div>
   )

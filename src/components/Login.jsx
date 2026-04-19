@@ -15,7 +15,6 @@ function Login({ setIsLoggedIn }) {
 
     try {
       if (isSignUp) {
-        // Sign up
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
@@ -24,7 +23,6 @@ function Login({ setIsLoggedIn }) {
         if (error) throw error
         setMessage('Check your email to confirm your account!')
       } else {
-        // Sign in
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -41,57 +39,59 @@ function Login({ setIsLoggedIn }) {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        
-        <div className="login-header">
-          <h1>{isSignUp ? 'Create Account' : 'Welcome Back'}</h1>
-          <p>{isSignUp ? 'Start your journaling journey' : 'Sign in to continue your journey'}</p>
-        </div>
-
-        <form className="login-form" onSubmit={handleAuth}>
+    <div className="page-wrapper">
+      <div className="login-page">
+        <div className="login-container">
           
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+          <div className="login-header">
+            <h1>{isSignUp ? 'Create Account' : 'Welcome Back'}</h1>
+            <p>{isSignUp ? 'Start your journaling journey' : 'Sign in to continue your journey'}</p>
           </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+          <form className="login-form" onSubmit={handleAuth}>
+            
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
 
-          {message && <p className="auth-message">{message}</p>}
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
 
-          <button type="submit" className="login-btn" disabled={loading}>
-            {loading ? 'Loading...' : (isSignUp ? 'Sign Up' : 'Sign In')}
-          </button>
+            {message && <p className="auth-message">{message}</p>}
 
-          <p className="signup-link">
-            {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
-            <a href="#" onClick={(e) => {
-              e.preventDefault()
-              setIsSignUp(!isSignUp)
-              setMessage('')
-            }}>
-              {isSignUp ? 'Sign in' : 'Sign up'}
-            </a>
-          </p>
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Loading...' : (isSignUp ? 'Sign Up' : 'Sign In')}
+            </button>
 
-        </form>
+            <p className="signup-link">
+              {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+              <a href="#" onClick={(e) => {
+                e.preventDefault()
+                setIsSignUp(!isSignUp)
+                setMessage('')
+              }}>
+                {isSignUp ? 'Sign in' : 'Sign up'}
+              </a>
+            </p>
 
+          </form>
+
+        </div>
       </div>
     </div>
   )
