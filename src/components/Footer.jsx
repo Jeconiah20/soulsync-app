@@ -63,7 +63,7 @@ function Footer({ setCurrentPage }) {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 Soul Sync. All rights reserved.</p>
+        <p>© 2026 Soul Sync. All rights reserved.</p>
       </div>
     </footer>
   )
