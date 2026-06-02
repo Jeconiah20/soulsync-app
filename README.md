@@ -1,6 +1,8 @@
 ## Soul Sync 🌿
 A calming journaling web application designed to help users reflect, track moods, and reconnect with themselves—gently, without pressure.
 
+Live link : https://soulsync-app-ten.vercel.app/
+
 ## ✨ Features
 - 🌱 Daily Mood Tracking - Check in with your emotions using an intuitive mood selector
 - ✍️ Today's Journal - Spacious writing area to capture your thoughts and feelings
